@@ -55,6 +55,7 @@ while (cotizar === "si") {
     while (cotizar != "si" && cotizar != "no") {
         alert("Ingresa una opción valida");
         cotizar = prompt("¿Quieres cotizar de nuevo? si/no");
+        cotizar = cotizar.toLowerCase ();
     }
 }
 //Alerta despedida
