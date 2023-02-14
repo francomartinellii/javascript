@@ -1,23 +1,22 @@
-
 // Alerta de bienvenida
 alert("Bienvenido al Conversor de Divisas");
 
-// Map y objeto
-const tasasDeCambio = new Map([
-  ["usd", { tasa: 380, simbolo: "$", nombre: "Dólar Estadounidense" }],
-  ["euro", { tasa: 410, simbolo: "€", nombre: "Euro" }],
-  ["real", { tasa: 83, simbolo: "R$", nombre: "Real Brasileño" }],
-  ["gbp" , { tasa: 450, simbolo: "£" , nombre:"Libra Esterlina"}],
-]);
+// Array de objetos
+const tasasDeCambio = [
+  { moneda: "usd", tasa: 380, simbolo: "$", nombre: "Dólar Estadounidense" },
+  { moneda: "euro", tasa: 410, simbolo: "€", nombre: "Euro" },
+  { moneda: "real", tasa: 83, simbolo: "R$", nombre: "Real Brasileño" },
+  { moneda: "gbp", tasa: 450, simbolo: "£", nombre: "Libra Esterlina" },
+];
 
-// Array monedas aceptadas
-const monedasAceptadas = ["usd", "euro", "real" , "gbp"];
+// Array de monedas aceptadas
+const monedasAceptadas = ["usd", "euro", "real", "gbp"];
 
 // Función cotizacion
 function cotizacion(monto, moneda) {
-  if (tasasDeCambio.has(moneda)) {
-    let tasa = tasasDeCambio.get(moneda);
-    let total = monto * tasa.tasa;
+  const tasa = tasasDeCambio.find((tasa) => tasa.moneda === moneda);
+  if (tasa) {
+    const total = monto * tasa.tasa;
     return {
       simbolo: tasa.simbolo,
       nombre: tasa.nombre,
@@ -33,15 +32,19 @@ let cotizar = true;
 
 while (cotizar) {
   // Pedir moneda y monto a cotizar
-  let moneda = prompt("Elige la moneda que quieres cotizar: usd, euro, real, gbp").toLowerCase();
+  let moneda = prompt(
+    "Elige la moneda que quieres cotizar: usd, euro, real, gbp"
+  ).toLowerCase();
   while (!monedasAceptadas.includes(moneda)) {
     alert("Moneda no válida");
-    moneda = prompt("Elige la moneda que quieres cotizar: usd, euro, real, gbp").toLowerCase();
+    moneda = prompt(
+      "Elige la moneda que quieres cotizar: usd, euro, real, gbp"
+    ).toLowerCase();
   }
 
   let monto = prompt("Ingresa el monto:");
-  while (isNaN(monto) || (monto) <= 0) {
-    alert("Monto no válido el monto debe ser positivo");
+  while (isNaN(monto) || monto <= 0) {
+    alert("Monto no válido el monto debe ser un numero positivo");
     monto = prompt("Ingresa el monto:");
   }
   monto = parseInt(monto);
@@ -71,4 +74,3 @@ while (cotizar) {
 
 // Alerta de despedida
 alert("Gracias por usar el Conversor de Divisas");
-
