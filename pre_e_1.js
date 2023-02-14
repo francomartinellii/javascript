@@ -26,6 +26,7 @@ let cotizar = "si";
 while (cotizar === "si") {
     // Pedir moneda y monto a cotizar
     let moneda = prompt("Elige la moneda que quieres cotizar: usd, euro, real");
+        moneda = moneda.toLowerCase ();
     while (!monedasAceptadas.includes(moneda)) {
         alert("Ingresa una moneda valida");
         moneda = prompt("Elige la moneda que quieres cotizar: usd, euro, real");
