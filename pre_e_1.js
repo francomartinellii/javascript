@@ -74,3 +74,4 @@ while (cotizar) {
 
 // Alerta de despedida
 alert("Gracias por usar el Conversor de Divisas FM");
+
