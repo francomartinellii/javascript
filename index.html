@@ -1,14 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="./style.css">
+  <title>Conversor de moneda</title>
 </head>
+
 <body>
-    <h1 style="color: rgb(33, 126, 168);">Calculadora de divisas</h1>
-    <h2>Franco Martinelli</h2>
-    <script src="./pre_e_1.js"></script>
+  <header>
+    <img class="banner" src="./assets/BANNER+DIVISAS+MOVIL.jpg" alt="">
+  </header>
+  <main>
+
+    <h1>Conversor de moneda</h1>
+
+    <div class="form">
+      <label for="moneda">Elije la moneda que quieras convertir:</label>
+      <select id="moneda">
+        <option value="usd">Dólar Estadounidense</option>
+        <option value="euro">Euro</option>
+        <option value="real">Real Brasileño</option>
+        <option value="gbp">Libra Esterlina</option>
+      </select>
+    </div>
+    <div class="form">
+      <label for="monto">Monto:</label>
+      <input type="number" id="monto" />
+    </div>
+    <button id="cotizar">Cotizar</button>
+    <div id="resultado"></div>
+    <div id="error"></div>
+
+    <table id="historial">
+      <thead>
+        <tr>
+
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <br>
+    <button id="borrarHistorial">Borrar historial completo</button>
+
+
+
+  </main>
+  <script src="./script.js"></script>
 </body>
+
 </html>
