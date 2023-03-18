@@ -6,6 +6,7 @@ const tasasDeCambio = [
     { moneda: "gbp", tasa: 450, simbolo: "£", nombre: "Libra Esterlina" },
 ];
 
+
 const monedasAceptadas = ["usd", "euro", "real", "gbp"];
 
 const cotizarButton = document.getElementById("cotizar");
@@ -89,11 +90,32 @@ function actualizarHistorial() {
         <p>Total en pesos: $${cotizacion.total}</p>
         <p>Fecha: ${cotizacion.fecha.toLocaleString()}</p>
       `;
-        const borrarHistorialButton = document.getElementById("borrarHistorial");
-        borrarHistorialButton.addEventListener("click", () => {
-            cotizaciones.length = 0;
-            actualizarHistorial();
-        });
+      const borrarHistorialButton = document.getElementById("borrarHistorial");
+
+      borrarHistorialButton.addEventListener("click", () => {
+          Swal.fire({
+              title: '¿Estás seguro que deseas borrar el historial?',
+              text: "No podrás revertir esta acción!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Si, borrar historial!'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  cotizaciones.length = 0;
+                  guardarDatos();
+                  actualizarHistorial();
+                  Swal.fire(
+                      'Borrado!',
+                      'El historial ha sido borrado.',
+                      'success'
+                  )
+              }
+          })
+      });
+      
+     
 
         const limpiarBtn = document.createElement("button");
         limpiarBtn.innerText = "Limpiar";
