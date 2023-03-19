@@ -6,8 +6,6 @@
 
 .banner {
     max-width: 100%;
-
-
 }
 
 body {
@@ -29,7 +27,6 @@ h4 {
     height: 200px;
     line-height: 50px;
     font-family: sans-serif;
-
     white-space: nowrap;
     overflow: hidden;
 }
@@ -96,19 +93,15 @@ h4 {
 }
 
 #historial {
-    max-width: 100%;
-    display: flex;
-   
-
+    margin-left: 30%;
     justify-content: center;
-
+    width: 40%;
 }
 
 #borrarHistorial {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
 
 h1 {
     text-align: center;
@@ -153,7 +146,6 @@ button:hover {
     background-color: #8e3e3e;
 }
 
-
 #resultado,
 #error {
     display: flex;
@@ -166,6 +158,8 @@ button:hover {
     align-items: center;
     background-color: #f2f2f2;
     border-radius: 5px;
+}
 
-
+footer {
+    margin: 1%;
 }

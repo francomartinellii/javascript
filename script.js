@@ -1,5 +1,5 @@
-//Api cotizacion oficial desde dolarsi
-function showDollarExchange() {
+//Fetch cotizacion oficial desde api dolarsi
+function CotizacionOficialArg() {
     fetch('https://www.dolarsi.com/api/api.php?type=dolar')
         .then(response => response.json())
         .then(data => {
@@ -10,7 +10,7 @@ function showDollarExchange() {
 
             // Mostrar la cotización oficial dolar
             const oficialElem = document.getElementById('oficial');
-            oficialElem.innerHTML = ` Compra: ${oficialCompra} - Venta: ${oficialVenta} /` ;
+            oficialElem.innerHTML = ` Compra: ${oficialCompra} - Venta: ${oficialVenta} /`;
         })
 
     fetch('https://www.dolarsi.com/api/api.php?type=euro')
@@ -23,7 +23,7 @@ function showDollarExchange() {
 
             // Mostrar la cotización oficial euro
             const oficialElem = document.getElementById('euro');
-            oficialElem.innerHTML = ` Compra: ${oficialCompra} - Venta: ${oficialVenta} / ` ;
+            oficialElem.innerHTML = ` Compra: ${oficialCompra} - Venta: ${oficialVenta} / `;
         })
 
     fetch('https://www.dolarsi.com/api/api.php?type=real')
@@ -36,10 +36,10 @@ function showDollarExchange() {
 
             // Mostrar la cotización oficial real
             const oficialElem = document.getElementById('real');
-            oficialElem.innerHTML = ` Compra: ${oficialCompra} - Venta: ${oficialVenta} / ` ;
+            oficialElem.innerHTML = ` Compra: ${oficialCompra} - Venta: ${oficialVenta} / `;
         })
 
-        fetch('https://www.dolarsi.com/api/api.php?type=libra')
+    fetch('https://www.dolarsi.com/api/api.php?type=libra')
         .then(response => response.json())
         .then(data => {
             // Obtener la cotización oficial libra
@@ -49,19 +49,18 @@ function showDollarExchange() {
 
             // Mostrar la cotización oficial libra
             const oficialElem = document.getElementById('libra');
-            oficialElem.innerHTML = ` Compra: ${oficialCompra} - Venta: ${oficialVenta}  ` ;
+            oficialElem.innerHTML = ` Compra: ${oficialCompra} - Venta: ${oficialVenta}  `;
         })
 }
 
-showDollarExchange();
-
+CotizacionOficialArg();
+//Arreglo de objetos
 const tasasDeCambio = [
     { moneda: "usd", tasa: 383, simbolo: "u$d", nombre: "Dólar Estadounidense" },
     { moneda: "euro", tasa: 410, simbolo: "€", nombre: "Euro" },
     { moneda: "real", tasa: 83, simbolo: "R$", nombre: "Real Brasileño" },
     { moneda: "gbp", tasa: 450, simbolo: "£", nombre: "Libra Esterlina" },
 ];
-
 
 const monedasAceptadas = ["usd", "euro", "real", "gbp"];
 
@@ -71,6 +70,7 @@ const errorDiv = document.getElementById("error");
 const historialDiv = document.getElementById("historial");
 const cotizaciones = [];
 
+//Json & Storage
 function guardarDatos() {
     localStorage.setItem("cotizaciones", JSON.stringify(cotizaciones));
 }
@@ -125,7 +125,7 @@ cotizarButton.addEventListener("click", () => {
       <p>Monto a cotizar: ${tasa.simbolo}${monto}</p>
       <p>Moneda: ${tasa.nombre}</p>
       <p>Total en pesos: $${total}</p>
-    `;
+      `;
 
     errorDiv.innerHTML = "";
 
@@ -145,8 +145,7 @@ function actualizarHistorial() {
         <p>Cotización anterior:</p>
         <p>Monto cotizado: ${cotizacion.monto} ${cotizacion.moneda}</p>
         <p>Total en pesos: $${cotizacion.total}</p>
-        <p>Fecha: ${cotizacion.fecha.toLocaleString()}</p>
-      `;
+        <p>Fecha: ${cotizacion.fecha.toLocaleString()}</p> `;
         //Boton Borrar Historial
         const borrarHistorialButton = document.getElementById("borrarHistorial");
         borrarHistorialButton.style.marginTop = "20px"
