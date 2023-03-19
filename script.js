@@ -1,6 +1,62 @@
+//Api cotizacion oficial desde dolarsi
+function showDollarExchange() {
+    fetch('https://www.dolarsi.com/api/api.php?type=dolar')
+        .then(response => response.json())
+        .then(data => {
+            // Obtener la cotización oficial dolar
+            const oficial = data.find(item => item.casa.nombre === 'Oficial');
+            const oficialCompra = oficial.casa.compra;
+            const oficialVenta = oficial.casa.venta;
+
+            // Mostrar la cotización oficial dolar
+            const oficialElem = document.getElementById('oficial');
+            oficialElem.innerHTML = ` Compra: ${oficialCompra} - Venta: ${oficialVenta} /` ;
+        })
+
+    fetch('https://www.dolarsi.com/api/api.php?type=euro')
+        .then(response => response.json())
+        .then(data => {
+            // Obtener la cotización oficial euro
+            const oficial = data.find(item => item.casa.nombre === 'Vaccaro S.A.');
+            const oficialCompra = oficial.casa.compra;
+            const oficialVenta = oficial.casa.venta;
+
+            // Mostrar la cotización oficial euro
+            const oficialElem = document.getElementById('euro');
+            oficialElem.innerHTML = ` Compra: ${oficialCompra} - Venta: ${oficialVenta} / ` ;
+        })
+
+    fetch('https://www.dolarsi.com/api/api.php?type=real')
+        .then(response => response.json())
+        .then(data => {
+            // Obtener la cotización oficial real
+            const oficial = data.find(item => item.casa.nombre === 'Vaccaro S.A.');
+            const oficialCompra = oficial.casa.compra;
+            const oficialVenta = oficial.casa.venta;
+
+            // Mostrar la cotización oficial real
+            const oficialElem = document.getElementById('real');
+            oficialElem.innerHTML = ` Compra: ${oficialCompra} - Venta: ${oficialVenta} / ` ;
+        })
+
+        fetch('https://www.dolarsi.com/api/api.php?type=libra')
+        .then(response => response.json())
+        .then(data => {
+            // Obtener la cotización oficial libra
+            const oficial = data.find(item => item.casa.nombre === 'Vaccaro S.A.');
+            const oficialCompra = oficial.casa.compra;
+            const oficialVenta = oficial.casa.venta;
+
+            // Mostrar la cotización oficial libra
+            const oficialElem = document.getElementById('libra');
+            oficialElem.innerHTML = ` Compra: ${oficialCompra} - Venta: ${oficialVenta}  ` ;
+        })
+}
+
+showDollarExchange();
 
 const tasasDeCambio = [
-    { moneda: "usd", tasa: 380, simbolo: "$", nombre: "Dólar Estadounidense" },
+    { moneda: "usd", tasa: 383, simbolo: "u$d", nombre: "Dólar Estadounidense" },
     { moneda: "euro", tasa: 410, simbolo: "€", nombre: "Euro" },
     { moneda: "real", tasa: 83, simbolo: "R$", nombre: "Real Brasileño" },
     { moneda: "gbp", tasa: 450, simbolo: "£", nombre: "Libra Esterlina" },
@@ -28,7 +84,7 @@ function cargarDatos() {
 }
 
 cargarDatos();
-
+//Cotizador
 cotizarButton.addEventListener("click", () => {
     const moneda = document.getElementById("moneda").value;
     const monto = parseInt(document.getElementById("monto").value);
@@ -76,6 +132,7 @@ cotizarButton.addEventListener("click", () => {
     actualizarHistorial();
 });
 
+//Agregar Historial
 function actualizarHistorial() {
     historialDiv.innerHTML = "";
     cotizaciones.forEach((cotizacion, index) => {
@@ -90,35 +147,37 @@ function actualizarHistorial() {
         <p>Total en pesos: $${cotizacion.total}</p>
         <p>Fecha: ${cotizacion.fecha.toLocaleString()}</p>
       `;
-      const borrarHistorialButton = document.getElementById("borrarHistorial");
+        //Boton Borrar Historial
+        const borrarHistorialButton = document.getElementById("borrarHistorial");
+        borrarHistorialButton.style.marginTop = "20px"
+        //Libreria SweerAlert
+        borrarHistorialButton.addEventListener("click", () => {
+            Swal.fire({
+                title: '¿Estás seguro que deseas borrar el historial?',
+                text: "No podrás revertir esta acción!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, borrar historial!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    cotizaciones.length = 0;
+                    guardarDatos();
+                    actualizarHistorial();
+                    Swal.fire(
+                        'Borrado!',
+                        'El historial ha sido borrado.',
+                        'success'
+                    )
+                }
+            })
+        });
 
-      borrarHistorialButton.addEventListener("click", () => {
-          Swal.fire({
-              title: '¿Estás seguro que deseas borrar el historial?',
-              text: "No podrás revertir esta acción!",
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Si, borrar historial!'
-          }).then((result) => {
-              if (result.isConfirmed) {
-                  cotizaciones.length = 0;
-                  guardarDatos();
-                  actualizarHistorial();
-                  Swal.fire(
-                      'Borrado!',
-                      'El historial ha sido borrado.',
-                      'success'
-                  )
-              }
-          })
-      });
-      
-     
-
+        //Boton borrar elemento
         const limpiarBtn = document.createElement("button");
-        limpiarBtn.innerText = "Limpiar";
+        limpiarBtn.innerText = "Borrar cotizacion";
+        limpiarBtn.style.marginTop = "20px"
         limpiarBtn.addEventListener("click", () => {
             cotizaciones.splice(index, 1);
             guardarDatos();

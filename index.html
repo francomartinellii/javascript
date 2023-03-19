@@ -8,6 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
   <link rel="stylesheet" href="./style.css">
   <title>Conversor de moneda FM</title>
+  <link rel="shortcut icon" href="./assets/cambio-de-divisas.png" type="image/x-icon">
 </head>
 
 <body>
@@ -15,7 +16,28 @@
     <img class="banner" src="./assets/BANNER+DIVISAS+MOVIL.jpg" alt="">
   </header>
   <main>
-    <h1>Conversor de moneda</h1>
+    <div class="box">
+      <div class="inner">
+        <span class="cotizacionOficial">
+          <img src="./assets/dolarusa.png" alt="">
+          <h4>Dolar </h4>
+          <div id="oficial"></div>
+          <img src="./assets/eurob.png" alt="">
+          <h4>Euro </h4>
+          <div id="euro"></div>
+          <img src="./assets/real.png" alt="">
+          <h4>Real </h4>
+          <div id="real"></div>
+          <img src="./assets/librauk.png" alt="">
+          <h4>Libra </h4>
+          <div id="libra"></div>
+        </span>
+      </div>
+    </div>
+    </div>
+
+    <h1>Conversor de Divisas Blue</h1>
+
     <div class="form">
       <label for="moneda">Elije la moneda que quieras convertir:</label>
       <select id="moneda">
